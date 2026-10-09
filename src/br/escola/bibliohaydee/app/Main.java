@@ -5,9 +5,9 @@ import java.util.ArrayList;
 public class Main {
     public static void main(String[] args) {
 
-    Autor autor = new Autor();
-    autor.setNome("Sarah J. Maas");
-    autor.setNacionalidade("Norte-Americana");
+        Autor autor = new Autor();
+        autor.setNome("Sarah J. Maas");
+        autor.setNacionalidade("Norte-Americana");
         autor.setAnoNascimento(1986);
 
         ArrayList<Autor> autores = new ArrayList<>();
@@ -31,5 +31,5 @@ public class Main {
         System.out.println(livro2);
         System.out.println(autor);
 
-}
+    }
 }
