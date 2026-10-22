@@ -1,6 +1,7 @@
 package br.escola.bibliohaydee.app;
 import br.escola.bibliohaydee.model.Autor;
 import br.escola.bibliohaydee.model.Livro;
+import br.escola.bibliohaydee.model.Usuario;
 import java.util.ArrayList;
 public class Main {
     public static void main(String[] args) {
@@ -11,6 +12,15 @@ public class Main {
         autor.setAnoNascimento(1986);
 
         ArrayList<Autor> autores = new ArrayList<>();
+        ArrayList<Usuario> usuarios = new ArrayList<>();
+        Usuario usuario = new Usuario(
+                "Mayume",
+                "001",
+                "ALUNO",
+                3
+        );
+
+        usuarios.add(usuario);
         autores.add(autor);
         Autor autor2 = new Autor();
         autor2.setNome("Colleen Hoover");
@@ -30,6 +40,7 @@ public class Main {
         System.out.println(livro);
         System.out.println(livro2);
         System.out.println(autor);
+        System.out.println(usuarios);
 
     }
-}
+} 
