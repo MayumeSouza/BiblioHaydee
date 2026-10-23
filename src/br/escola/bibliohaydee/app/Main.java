@@ -1,4 +1,5 @@
 package br.escola.bibliohaydee.app;
+import java.util.Scanner;
 import br.escola.bibliohaydee.model.Autor;
 import br.escola.bibliohaydee.model.Livro;
 import br.escola.bibliohaydee.model.Usuario;
@@ -12,13 +13,39 @@ public class Main {
         autor.setAnoNascimento(1986);
 
         ArrayList<Autor> autores = new ArrayList<>();
+        Scanner scanner = new Scanner(System.in);
+
+        String nome;
+
+        do {
+            System.out.print("Digite o nome: ");
+            nome = scanner.nextLine();
+
+            if (nome.trim().isEmpty()) {
+                System.out.println("O nome não pode ser vazio.");
+            }
+
+        } while (nome.trim().isEmpty());
+
+        System.out.print("Digite a matrícula: ");
+        String matricula = scanner.nextLine();
+
+        String tipo;
+
+        do {
+            System.out.print("Digite o tipo (ALUNO ou PROFESSOR): ");
+            tipo = scanner.nextLine().toUpperCase();
+
+            if (!tipo.equals("ALUNO") && !tipo.equals("PROFESSOR")) {
+                System.out.println("Tipo inválido. Digite ALUNO ou PROFESSOR.");
+            }
+
+        } while (!tipo.equals("ALUNO") && !tipo.equals("PROFESSOR"));
+
+        System.out.print("Digite o limite de empréstimos: ");
+        int limite = Integer.parseInt(scanner.nextLine());
         ArrayList<Usuario> usuarios = new ArrayList<>();
-        Usuario usuario = new Usuario(
-                "Mayume",
-                "001",
-                "ALUNO",
-                3
-        );
+        Usuario usuario = new Usuario(nome, matricula, tipo, limite);
 
         usuarios.add(usuario);
         autores.add(autor);
