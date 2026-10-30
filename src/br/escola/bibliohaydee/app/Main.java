@@ -5,9 +5,11 @@ import br.escola.bibliohaydee.model.Livro;
 import br.escola.bibliohaydee.model.Usuario;
 import java.util.ArrayList;
 public class Main {
+
     public static void main(String[] args) {
 
         Autor autor = new Autor();
+        Autor autor1 = new Autor();
         autor.setNome("Sarah J. Maas");
         autor.setNacionalidade("Norte-Americana");
         autor.setAnoNascimento(1986);
@@ -42,10 +44,20 @@ public class Main {
 
         } while (!tipo.equals("ALUNO") && !tipo.equals("PROFESSOR"));
 
-        System.out.print("Digite o limite de empréstimos: ");
-        int limite = Integer.parseInt(scanner.nextLine());
         ArrayList<Usuario> usuarios = new ArrayList<>();
-        Usuario usuario = new Usuario(nome, matricula, tipo, limite);
+
+        System.out.print("Definir o limite? (S/N): ");
+        String resposta = scanner.nextLine();
+
+        Usuario usuario;
+
+        if (resposta.equalsIgnoreCase("S")) {
+            System.out.print("Digite o limite de empréstimos: ");
+            int limite = Integer.parseInt(scanner.nextLine());
+            usuario = new Usuario(nome, matricula, tipo, limite);
+        } else {
+            usuario = new Usuario(nome, matricula, tipo);
+        }
 
         usuarios.add(usuario);
         autores.add(autor);
@@ -55,7 +67,7 @@ public class Main {
         autor2.setAnoNascimento(1979);
         autores.add(autor2);
         Livro livro = new Livro("Corte de Espinhos e Rosas", "123456", autor, 2026, "Romance");
-
+        Livro livro3 = new Livro("Meu Livro", "123458", autor, 2026);
         Livro livro2 = new Livro("É Assim que Acaba", "123457", autor2, 2018, "Romance");
 
         ArrayList<Livro> livros = new ArrayList<>();
@@ -66,8 +78,47 @@ public class Main {
         System.out.println(autores);
         System.out.println(livro);
         System.out.println(livro2);
+        System.out.println(livro3);
         System.out.println(autor);
         System.out.println(usuarios);
 
+        System.out.print("Digite a matrícula do usuário que deseja atualizar: ");
+        String matriculaBusca = scanner.nextLine();
+
+        Usuario encontrado = buscarUsuario(usuarios, matriculaBusca);
+
+        if (encontrado == null) {
+            System.out.println("Usuário não localizado. Nenhuma alteração feita.");
+        } else {
+            System.out.println("1 - Alterar nome");
+            System.out.println("2 - Alterar limite de empréstimos");
+            System.out.print("Escolha uma opção: ");
+            String opcao = scanner.nextLine();
+
+            try {
+                if (opcao.equals("1")) {
+                    System.out.print("Digite o novo nome: ");
+                    encontrado.setNome(scanner.nextLine());
+                } else if (opcao.equals("2")) {
+                    System.out.print("Digite o novo limite: ");
+                    encontrado.setLimiteEmprestimos(Integer.parseInt(scanner.nextLine()));
+                } else {
+                    System.out.println("Opção inválida.");
+                }
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+
+            System.out.println("Usuário atualizado: " + encontrado);
+        }
+
+    }
+    private static Usuario buscarUsuario(ArrayList<Usuario> usuarios, String matricula) {
+        for (Usuario usuario : usuarios) {
+            if (usuario.getMatricula().equals(matricula)) {
+                return usuario;
+            }
+        }
+        return null;
     }
 } 

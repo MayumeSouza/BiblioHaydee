@@ -1,9 +1,9 @@
 package br.escola.bibliohaydee.model;
 
 public class Autor {
-    String nome;
-    String nacionalidade;
-    int anoNascimento;
+   private String nome;
+   private String nacionalidade;
+   private int anoNascimento;
 
     @Override
     public String toString() {

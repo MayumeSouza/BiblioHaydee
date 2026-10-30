@@ -1,14 +1,18 @@
 package br.escola.bibliohaydee.model;
 public class Livro {
 
-    String titulo;
-    String isbn;
-    Autor autor;
-    int anoPublicacao;
-    String genero;
-    boolean disponivel;
+    private String titulo;
+    private String isbn;
+    private Autor autor;
+    private int anoPublicacao;
+    private String genero;
+    private boolean disponivel;
 
+    public Livro(String titulo, String isbn, Autor autor, Integer anoDePublicacao) {
+        this(titulo, isbn, autor, anoDePublicacao, "Não informado");
+    }
     public Livro(String titulo, String isbn, Autor autor, int anoPublicacao, String genero) {
+
         this.titulo = titulo;
         this.isbn = isbn;
         this.autor = autor;
